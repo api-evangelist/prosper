@@ -1,0 +1,70 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.prosper.com/docs/investor/
+docs: https://developers.prosper.com/docs/investor/
+summary:
+  types:
+  - oauth2
+  transport: SSL/TLS required (HTTPS only)
+  oauth2_flows:
+  - password
+  - refresh_token
+  - authorizationCode
+notes: >-
+  Prosper does not publish an OpenAPI document; this profile is derived from the
+  provider's public developer documentation. The Investor API authenticates with
+  OAuth 2.0 over SSL. Prosper assigns each application a client_id and
+  client_secret on the OAuth Settings page. Named OAuth scopes are not
+  documented (there is no per-scope permission surface); third-party access is
+  authorized per-investor via the consent screen at https://www.prosper.com/oauth.
+schemes:
+- name: OAuth2Password
+  type: oauth2
+  flow: password
+  token_url: https://api.prosper.com/v1/security/oauth/token
+  grant_type: password
+  parameters:
+  - grant_type
+  - client_id
+  - client_secret
+  - username
+  - password
+  description: >-
+    Individual and institutional investors obtain an access token by posting
+    their OAuth client credentials together with their Prosper account
+    username/password to the token endpoint.
+  sources:
+  - https://developers.prosper.com/docs/investor/
+- name: OAuth2Refresh
+  type: oauth2
+  flow: refresh_token
+  token_url: https://api.prosper.com/v1/security/oauth/token
+  grant_type: refresh_token
+  parameters:
+  - grant_type
+  - client_id
+  - client_secret
+  - refresh_token
+  description: Exchange a refresh_token for a new access token when it expires.
+  sources:
+  - https://developers.prosper.com/docs/investor/
+- name: OAuth2AuthorizationCode
+  type: oauth2
+  flow: authorizationCode
+  authorization_url: https://www.prosper.com/oauth
+  token_url: https://api.prosper.com/v1/security/oauth/token
+  grant_type: authorization_code
+  description: >-
+    Third-party agents that trade on an investor's behalf request access through
+    the Prosper consent screen; the investor grants permission per company.
+  sources:
+  - https://developers.prosper.com/docs/investor/
+  - https://www.prosper.com/blog/prosper-announces-new-api-platform-for-investors
+request_header: 'Authorization: bearer <access_token>'
+environments:
+  production:
+    base_url: https://api.prosper.com/v1
+    token_url: https://api.prosper.com/v1/security/oauth/token
+  sandbox:
+    base_url: https://api.sandbox.prosper.com/v1
+    token_url: https://api.sandbox.prosper.com/v1/security/oauth/token

@@ -1,0 +1,43 @@
+# Prosper
+
+> Prosper Marketplace runs a leading US peer-to-peer (marketplace) lending platform matching investors with consumer borrowers. Its RESTful Investor API lets individual, institutional, and third-party investors view accounts, search loan listings, place orders to purchase Notes, and track Notes, loans, and payments over OAuth 2.0.
+
+## APIs
+
+- [Prosper Investor API](https://developers.prosper.com/docs/investor/): View account balances, search active loan listings, place orders (bids) to buy Notes, and retrieve owned Notes, invested loans, and payments. Base URL https://api.prosper.com/v1 (Listings service at /listingsvc/v2/). Sandbox at https://api.sandbox.prosper.com/v1.
+
+## Authentication
+
+- OAuth 2.0 over SSL. Token endpoint: https://api.prosper.com/v1/security/oauth/token
+- Grants: password (client_id + client_secret + username + password), refresh_token, and authorization_code (third-party agents via https://www.prosper.com/oauth).
+- Request header: Authorization: bearer <access_token>
+
+## Operations
+
+- GET /accounts/prosper/ — account cash balance and totals
+- GET /listingsvc/v2/listings/ — search active loan listings (offset/limit, sort_by, range/multi-value/boolean filters)
+- POST /orders/ — create an order of up to 100 bids (listing_id + bid_amount)
+- GET /orders/ , GET /orders/{order_id} — order status and per-bid results
+- GET /notes/ , GET /notes/{loan_note_id} — owned Notes
+- GET /loans/ , GET /loans/{loan_id} — invested loans
+- GET /loans/payments/ — loan payment transactions
+
+## Docs
+
+- [Developer Portal](https://developers.prosper.com/)
+- [Documentation](https://developers.prosper.com/docs/)
+- [Investor API Reference](https://developers.prosper.com/docs/investor/)
+- [Support](https://developers.prosper.com/support/)
+- [Blog](https://www.prosper.com/blog)
+
+## Artifacts
+
+- [Authentication](authentication/prosper-authentication.yml)
+- [Conventions](conventions/prosper-conventions.yml)
+- [Error/Result Codes](errors/prosper-problem-types.yml)
+- [Lifecycle](lifecycle/prosper-lifecycle.yml)
+- [Sandbox](sandbox/prosper-sandbox.yml)
+- [Data Model](data-model/prosper-data-model.yml)
+- [Conformance](conformance/prosper-conformance.yml)
+- [MCP (candidate)](mcp/prosper-mcp.yml)
+- [Agent Skills](skills/_index.yml)

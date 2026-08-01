@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://developers.prosper.com/docs/investor/
+notes: >-
+  No official hosted/remote MCP server was found for Prosper. This is a CANDIDATE
+  tool list derived from the documented Investor API REST operations, one tool
+  per operation. It is a starting point for an MCP wrapper, not a published
+  server.
+server:
+  name: prosper-investor
+  transport: http
+  url: null
+tools:
+- name: get_account
+  description: View Prosper investor account information including available cash balance and total account value.
+  http: GET /accounts/prosper/
+- name: search_listings
+  description: Search active loan listings with range, multi-value, and boolean filters plus sort_by.
+  http: GET /listingsvc/v2/listings/
+- name: list_orders
+  description: Retrieve all orders placed by the investor.
+  http: GET /orders/
+- name: get_order
+  description: Retrieve the status of a specific order and its per-bid results.
+  http: GET /orders/{order_id}
+- name: place_order
+  description: Create an order containing up to 100 bids (listing_id + bid_amount) to purchase Notes.
+  http: POST /orders/
+- name: list_notes
+  description: Retrieve the investor's owned Notes.
+  http: GET /notes/
+- name: get_note
+  description: Retrieve a single owned Note by loan_note_id.
+  http: GET /notes/{loan_note_id}
+- name: list_loans
+  description: Retrieve the investor's invested loans.
+  http: GET /loans/
+- name: get_loan
+  description: Retrieve a single invested loan by loan_id.
+  http: GET /loans/{loan_id}
+- name: list_payments
+  description: Retrieve loan payment transactions applied to the investor's account.
+  http: GET /loans/payments/

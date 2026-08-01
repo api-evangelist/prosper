@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: https://developers.prosper.com/docs/investor/
+docs: https://developers.prosper.com/docs/investor/
+notes: >-
+  Cross-cutting standards conformance derived from Prosper's documented Investor
+  API behavior. No published SOC 2 / ISO 27001 trust center was found, so no
+  Compliance pointer is emitted.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.0 over SSL; token endpoint /v1/security/oauth/token with password, refresh_token, and authorization_code grants.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect discovery document; no /.well-known/openid-configuration (404).
+- id: rest
+  conforms: true
+  evidence: Resource-oriented HTTPS JSON API (accounts, listings, orders, notes, loans, payments).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use plain HTTP status codes plus domain bid_result codes; no application/problem+json.
+- id: pagination
+  conforms: true
+  evidence: offset/limit pagination with result_count/total_count envelope.
+- id: idempotency
+  conforms: partial
+  evidence: Orders are reconcilable by order_id but no Idempotency-Key header is documented.
+- id: rfc8414-oauth-metadata
+  conforms: false
+  evidence: No /.well-known/oauth-authorization-server (404).
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: No /.well-known/security.txt (404).

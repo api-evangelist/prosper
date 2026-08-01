@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: generated
+source: https://developers.prosper.com/docs/investor/
+notes: >-
+  Agent Skills generated from Prosper's documented Investor API operations (no
+  OpenAPI published; operations grounded in the public developer docs). Each
+  skill mirrors a marquee investor flow.
+skills:
+- file: prosper-search-and-invest.md
+  name: Search listings and place an investment order
+  api: https://developers.prosper.com/docs/investor/
+  operations:
+  - GET /accounts/prosper/
+  - GET /listingsvc/v2/listings/
+  - POST /orders/
+  - GET /orders/{order_id}
+- file: prosper-track-portfolio.md
+  name: Track invested Notes, loans, and payments
+  api: https://developers.prosper.com/docs/investor/
+  operations:
+  - GET /notes/
+  - GET /loans/
+  - GET /loans/payments/

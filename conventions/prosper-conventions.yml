@@ -1,0 +1,71 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.prosper.com/docs/investor/
+docs: https://developers.prosper.com/docs/investor/
+authentication:
+  style: OAuth 2.0 bearer token over SSL
+  header: 'Authorization: bearer <access_token>'
+  see: authentication/prosper-authentication.yml
+transport:
+  protocol: HTTPS only (SSL required)
+  format: application/json
+  accept_header: 'Accept: application/json'
+pagination:
+  style: offset-limit
+  params:
+    offset:
+      default: 0
+      description: Starting position in the result set.
+    limit:
+      default: 25
+      max: 500
+      description: Number of results per page.
+  response_fields:
+  - result
+  - result_count
+  - total_count
+  notes: >-
+    List endpoints (listings, loans, notes, orders, payments) wrap results in a
+    "result" array and return result_count and total_count for the query.
+sorting:
+  param: sort_by
+  format: "<field> <asc|desc>"
+  example: fico_score desc
+filtering:
+  description: >-
+    The Listings API supports comprehensive filtering. Range filters use
+    _min/_max suffixes (e.g. borrower_rate_min, fico_score_max); multi-value
+    filters accept comma-separated lists (e.g. prosper_rating, listing_term);
+    boolean filters include has_mortgage, biddable, invested.
+idempotency:
+  supported: true
+  mechanism: >-
+    Order placement is naturally idempotent at the domain level: each POST
+    /orders/ returns a unique order_id and the resulting bids are tracked by
+    listing_id, so an order can be reconciled and safely retried by inspecting
+    order status (GET /orders/{order_id}) before re-submitting. Orders cannot
+    exceed 100 bids. Prosper does not document a dedicated Idempotency-Key
+    header; agents should confirm order state before retry to avoid duplicate
+    bids.
+  header: null
+  retention: null
+versioning:
+  scheme: uri-path
+  current: v1
+  listings_service: /listingsvc/v2/listings/
+  notes: >-
+    Most resources live under /v1; the Listings service is versioned
+    independently at /listingsvc/v2/.
+error_envelope:
+  description: >-
+    Errors are returned with standard HTTP status codes and a JSON body. Order
+    submission returns per-bid result codes (bid_status, bid_result) rather than
+    top-level failures.
+  see: errors/prosper-problem-types.yml
+rate_limiting:
+  documented: true
+  detail: >-
+    Prosper documents best practices for avoiding rate limiting but does not
+    publish specific numeric limits or rate-limit response headers.
+lifecycle:
+  see: lifecycle/prosper-lifecycle.yml

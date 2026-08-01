@@ -1,8 +1,17 @@
 aid: prosper
 name: Prosper
-description: 'Prosper is a company surfaced as a portfolio company of emergence-capital, ivp, qed-investors
-  and added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Prosper Marketplace operates one of the largest peer-to-peer (marketplace)
+  lending platforms in the United States, matching individual and institutional
+  investors with consumers seeking personal loans, and also offering a HELOC
+  and a credit-card product. For investors, Prosper publishes a RESTful Investor
+  API that lets individual, institutional, and third-party agents connect
+  directly to the platform to view account balances, search active loan
+  listings, place orders (bids) to purchase Notes, and track owned Notes, loans,
+  and payments. The API uses OAuth 2.0 over SSL with comprehensive filtering and
+  sorting, and offers a sandbox environment for integration testing. This
+  profile was surfaced as a portfolio company of Emergence Capital, IVP, and QED
+  Investors and enriched from Prosper's public developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/prosper/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,20 +19,120 @@ x-backed-by:
 - emergence-capital
 - ivp
 - qed-investors
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: has-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://www.prosper.com/favicon.ico
 tags:
 - Company
 - Fintech
-apis: []
+- Lending
+- Peer-to-Peer Lending
+- Marketplace Lending
+- Investing
+- Personal Loans
+- Consumer Credit
+- Financial Services
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Prosper Investor API
+  description: >-
+    RESTful API for Prosper investors and third-party agents to view account
+    information, search active loan listings, place orders to purchase Notes,
+    and retrieve owned Notes, invested loans, and loan payments. OAuth 2.0 over
+    SSL. Production and sandbox environments.
+  humanURL: https://developers.prosper.com/docs/investor/
+  baseURL: https://api.prosper.com/v1
+  tags:
+  - Lending
+  - Investing
+  - Notes
+  - Listings
+  - Orders
+  properties:
+  - type: Documentation
+    url: https://developers.prosper.com/docs/investor/
+  - type: Authentication
+    url: authentication/prosper-authentication.yml
+  - type: Conventions
+    url: conventions/prosper-conventions.yml
+  - type: Idempotency
+    url: conventions/prosper-conventions.yml
+  - type: ErrorCatalog
+    url: errors/prosper-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/prosper-lifecycle.yml
+  - type: Deprecation
+    url: lifecycle/prosper-lifecycle.yml
+  - type: Sandbox
+    url: sandbox/prosper-sandbox.yml
+  - type: MCPServer
+    url: mcp/prosper-mcp.yml
+  - type: DataModel
+    url: data-model/prosper-data-model.yml
+  - type: Conformance
+    url: conformance/prosper-conformance.yml
 common:
 - type: Website
   url: https://www.prosper.com
+- type: DeveloperPortal
+  url: https://developers.prosper.com/
+- type: Documentation
+  url: https://developers.prosper.com/docs/
+- type: APIReference
+  url: https://developers.prosper.com/docs/investor/
+- type: GettingStarted
+  url: https://developers.prosper.com/docs/investor/
+- type: Support
+  url: https://developers.prosper.com/support/
+- type: HelpCenter
+  url: https://help.prosper.com/
+- type: Blog
+  url: https://www.prosper.com/blog
+- type: SignUp
+  url: https://www.prosper.com/signup
+- type: Pricing
+  url: https://www.prosper.com/loans/rates-and-fees
+- type: TermsOfService
+  url: https://www.prosper.com/legal/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.prosper.com/legal/privacy-policy
+- type: Authentication
+  url: authentication/prosper-authentication.yml
+- type: OAuth
+  url: https://www.prosper.com/oauth
+- type: Sandbox
+  url: sandbox/prosper-sandbox.yml
+- type: DomainSecurity
+  url: security/prosper-domain-security.yml
+- type: WellKnown
+  url: well-known/prosper-well-known.yml
+- type: Packages
+  url: packages/prosper-packages.yml
+- type: LLMsTxt
+  url: llms/prosper-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.prosper.com/docs/investor/orders-api/
+docs: https://developers.prosper.com/docs/investor/
+format: http-status + domain-result-codes
+notes: >-
+  Prosper does not publish RFC 9457 problem+json. API-level failures use
+  standard HTTP status codes. Order/bid outcomes are conveyed through per-bid
+  domain result codes on the order response rather than HTTP errors, so a
+  successful POST /orders/ can still contain bids that did not invest. Agents
+  must inspect bid_status and bid_result on each bid.
+http_status:
+- status: 400
+  title: Bad Request
+  remediation: Validate query filters and request body (e.g. bid_requests shape).
+- status: 401
+  title: Unauthorized
+  remediation: OAuth access token missing, invalid, or expired; refresh via the token endpoint.
+- status: 403
+  title: Forbidden
+  remediation: Investor has not granted this third-party agent permission, or the account lacks investing eligibility.
+- status: 404
+  title: Not Found
+  remediation: The requested resource (order_id, loan_id, loan_note_id) does not exist or is not owned by the caller.
+- status: 429
+  title: Too Many Requests
+  remediation: Rate limited; back off and follow Prosper's rate-limiting best practices.
+- status: 500
+  title: Internal Server Error
+  remediation: Transient platform error; retry with backoff.
+order_status:
+- code: IN_PROGRESS
+  meaning: The order is still being processed.
+- code: COMPLETED
+  meaning: The order has finished processing; inspect each bid for its result.
+bid_status:
+- code: PENDING
+  meaning: The bid is awaiting processing.
+- code: INVESTED
+  meaning: The bid resulted in an investment.
+- code: EXPIRED
+  meaning: The bid expired before it could be filled.
+bid_result:
+- code: NONE
+  meaning: No result yet (bid still pending).
+- code: BID_SUCCEEDED
+  meaning: The full bid amount was invested.
+- code: PARTIAL_BID_SUCCEEDED
+  meaning: Only part of the bid amount was invested.
+  masked_to_buyer: false
+- code: LISTING_NOT_BIDDABLE
+  meaning: The listing was no longer available to bid on.
+- code: LENDER_NOT_ELIGIBLE_TO_BID
+  meaning: The investor is not eligible to bid on this listing.
+- code: INSUFFICIENT_FUNDS
+  meaning: The investor's available cash balance was insufficient for the bid.

@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.prosper.com/docs/investor/
+notes: >-
+  Prosper does not publish an official first-party SDK. The client libraries
+  below are community/third-party wrappers around the Investor API; none are
+  marked official. No `SDKs` pointer is emitted in apis.yml because no
+  first-party SDK was found.
+packages:
+- language: python
+  registry: pypi
+  name: prosper-api
+  url: https://pypi.org/project/prosper-api/
+  install: pip install prosper-api
+  official: false
+  source: https://github.com/grahamtt/prosper-api
+  description: Community Python trading library for the Prosper Investor API (maintainer Graham Tibbitts).
+- language: go
+  registry: github
+  name: gofn-prosper
+  url: https://github.com/mtlynch/gofn-prosper
+  install: go get github.com/mtlynch/gofn-prosper
+  official: false
+  description: Community Go bindings for the Prosper P2P lending API (Account, Search, PlaceBid, OrderStatus).

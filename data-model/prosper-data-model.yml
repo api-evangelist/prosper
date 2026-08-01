@@ -1,0 +1,118 @@
+generated: '2026-07-20'
+method: derived
+source: https://developers.prosper.com/docs/investor/
+docs: https://developers.prosper.com/docs/investor/
+notes: >-
+  Entity-relationship graph derived from Prosper's documented Investor API
+  resource fields (no OpenAPI published). Relationships inferred from
+  id-reference fields (listing_number, loan_number, loan_note_id, order_id).
+entities:
+- name: Account
+  key: null
+  endpoint: GET /accounts/prosper/
+  fields:
+  - available_cash_balance
+  - total_account_value
+  - pending_investments_primary_market
+  - pending_investments_secondary_market
+  - pending_quick_invest_orders
+  - total_principal_received_on_active_notes
+  - total_amount_invested_on_active_notes
+  - outstanding_principal_on_active_notes
+  - invested_notes
+  - pending_bids
+- name: Listing
+  key: listing_number
+  endpoint: GET /listingsvc/v2/listings/
+  fields:
+  - listing_number
+  - listing_amount
+  - amount_funded
+  - percent_funded
+  - borrower_rate
+  - lender_yield
+  - prosper_rating
+  - fico_score
+  - listing_term
+  - listing_status
+  - verification_stage
+  - co_borrower_application
+- name: Order
+  key: order_id
+  endpoint: POST /orders/, GET /orders/{order_id}
+  fields:
+  - order_id
+  - order_status
+  - bid_requests
+- name: Bid
+  key: null
+  parent: Order
+  fields:
+  - listing_id
+  - bid_amount
+  - bid_status
+  - bid_result
+- name: Note
+  key: loan_note_id
+  endpoint: GET /notes/{loan_note_id}
+  fields:
+  - loan_note_id
+  - note_ownership_amount
+  - note_status
+  - note_status_description
+  - principal_balance_pro_rata_share
+  - interest_paid_pro_rata_share
+  - borrower_rate
+  - prosper_rating
+  - origination_date
+  - next_payment_due_date
+- name: Loan
+  key: loan_number
+  endpoint: GET /loans/{loan_id}
+  fields:
+  - loan_number
+  - amount_borrowed
+  - borrower_rate
+  - prosper_rating
+  - term
+  - principal_balance
+  - loan_status
+  - next_payment_due_date
+  - next_payment_due_amount
+- name: Payment
+  key: transaction_id
+  endpoint: GET /loans/payments/
+  fields:
+  - loan_number
+  - transaction_id
+  - payment_amount
+  - principal_amount
+  - interest_amount
+  - payment_status
+  - transaction_effective_date
+  - resulting_principal_balance
+relationships:
+- from: Order
+  to: Bid
+  type: has_many
+  via: bid_requests
+- from: Bid
+  to: Listing
+  type: belongs_to
+  via: listing_id
+- from: Note
+  to: Loan
+  type: belongs_to
+  via: loan_number
+- from: Payment
+  to: Loan
+  type: belongs_to
+  via: loan_number
+- from: Account
+  to: Note
+  type: has_many
+  via: invested_notes
+- from: Loan
+  to: Listing
+  type: belongs_to
+  via: listing (origination)

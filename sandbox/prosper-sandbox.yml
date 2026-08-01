@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.prosper.com/docs/investor/
+docs: https://developers.prosper.com/docs/investor/
+sandbox:
+  available: true
+  base_url: https://api.sandbox.prosper.com/v1
+  token_url: https://api.sandbox.prosper.com/v1/security/oauth/token
+  description: >-
+    Prosper provides a sandbox environment for the Investor API so integrators
+    can test authentication, listing search, and order placement against a
+    non-production host before going live. Sandbox uses the same OAuth 2.0 flow
+    and endpoint shapes as production, with separately issued OAuth credentials.
+separation:
+  model: separate host (sandbox subdomain), separate OAuth client credentials
+  production_base_url: https://api.prosper.com/v1
+  sandbox_base_url: https://api.sandbox.prosper.com/v1
+test_values:
+  note: >-
+    Prosper does not publish fixed "magic" test identifiers (test card numbers,
+    test loan IDs) the way card processors do; sandbox data is provisioned per
+    account. No verbatim test credentials are published, so none are recorded
+    here (never fabricated).

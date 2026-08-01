@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.prosper.com/docs/investor/
+docs: https://developers.prosper.com/docs/investor/
+versioning:
+  scheme: uri-path
+  current: v1
+  listings_service: v2 (/listingsvc/v2/)
+  docs: https://developers.prosper.com/docs/investor/
+deprecation:
+  policy: >-
+    Prosper deprecated its original SOAP/WSDL-based Marketplace API (spec v1.2.7,
+    ProsperAPI_Specification) in favor of the current RESTful OAuth 2.0 Investor
+    API. When the REST platform launched, Prosper ran the new and legacy systems
+    in parallel for 90 days and notified investors by email before shutting down
+    the older API.
+  legacy_docs: https://www.prosper.com/Downloads/Services/Documentation/ProsperAPI_Specification.pdf
+  announcement: https://www.prosper.com/blog/prosper-announces-new-api-platform-for-investors
+  sunset_header: unknown
+status_page:
+  url: null
+  found: false
+  note: No public status/uptime page was found at status.prosper.com or developers.prosper.com/status.
+sla:
+  url: null
+  note: No published API SLA / uptime target was found.
+support: https://developers.prosper.com/support/
+deprecated_operations: []
