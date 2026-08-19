@@ -2,18 +2,17 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: https://developers.prosper.com/docs/investor/
-notes: >-
-  No official hosted/remote MCP server was found for Prosper. This is a CANDIDATE
-  tool list derived from the documented Investor API REST operations, one tool
-  per operation. It is a starting point for an MCP wrapper, not a published
-  server.
+notes: No official hosted/remote MCP server was found for Prosper. This is a CANDIDATE tool list derived
+  from the documented Investor API REST operations, one tool per operation. It is a starting point for
+  an MCP wrapper, not a published server.
 server:
   name: prosper-investor
   transport: http
   url: null
 tools:
 - name: get_account
-  description: View Prosper investor account information including available cash balance and total account value.
+  description: View Prosper investor account information including available cash balance and total account
+    value.
   http: GET /accounts/prosper/
 - name: search_listings
   description: Search active loan listings with range, multi-value, and boolean filters plus sort_by.
@@ -42,3 +41,9 @@ tools:
 - name: list_payments
   description: Retrieve loan payment transactions applied to the investor's account.
   http: GET /loans/payments/
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census
