@@ -46,6 +46,16 @@ tags:
 - Investing
 - Personal Loans
 - Consumer Credit
+- Financial-Services
+tags_raw:
+- Company
+- Fintech
+- Lending
+- Peer-to-Peer Lending
+- Marketplace Lending
+- Investing
+- Personal Loans
+- Consumer Credit
 - Financial Services
 maintainers:
 - FN: Kin Lane
@@ -62,6 +72,12 @@ apis:
   humanURL: https://developers.prosper.com/docs/investor/
   baseURL: https://api.prosper.com/v1
   tags:
+  - Lending
+  - Investing
+  - Notes
+  - Listings
+  - Order
+  tags_raw:
   - Lending
   - Investing
   - Notes
