@@ -46,7 +46,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-10-06'
 image: https://www.prosper.com/favicon.ico
 tags:
 - Company
@@ -120,6 +120,8 @@ apis:
   - type: Conformance
     url: conformance/prosper-conformance.yml
 common:
+- url: https://www.prosper.com/feed
+  type: BlogRSS
 - type: Website
   url: https://www.prosper.com
 - type: DeveloperPortal
